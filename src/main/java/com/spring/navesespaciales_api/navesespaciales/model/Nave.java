@@ -17,6 +17,15 @@ public class Nave {
     private String series;
     private String tipo;
 
+    public Nave() {
+    }
+
+    public Nave(String name, String series, String tipo) {
+        this.name = name;
+        this.series = series;
+        this.tipo = tipo;
+    }
+
     public Long getId() {
         return id;
     }

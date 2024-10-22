@@ -6,6 +6,17 @@ public class NaveDTO {
     private String series;
     private String tipo;
 
+    // Constructor vacío
+    public NaveDTO() {
+    }
+        
+    // Constructor completo
+    public NaveDTO(Long id, String name, String series, String tipo) {
+        this.id = id;
+        this.name = name;
+        this.series = series;
+        this.tipo = tipo;
+    }
     // Getters and Setters
     public Long getId() {
         return id;

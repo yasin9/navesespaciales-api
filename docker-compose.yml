@@ -1,0 +1,39 @@
+services:
+  naves-espaciales:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_RABBITMQ_PORT: 5672
+      SPRING_RABBITMQ_USERNAME: guest
+      SPRING_RABBITMQ_PASSWORD: guest
+    networks:
+      - naves-network
+
+  db:
+    image: thomseno/h2
+    ports:
+      - "9092:9092"
+    networks:
+      - naves-network
+    environment:
+      H2_OPTIONS: '-tcp -tcpAllowOthers -tcpPort 9092'
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"  # Puerto para la conexión de los productores/consumidores
+      - "15672:15672"  # Puerto para la interfaz de gestión de RabbitMQ
+    networks:
+      - naves-network
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+
+networks:
+  naves-network:
+    driver: bridge

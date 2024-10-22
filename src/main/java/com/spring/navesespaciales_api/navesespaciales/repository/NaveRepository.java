@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.spring.navesespaciales_api.navesespaciales.model.Nave;
 
 public interface NaveRepository extends JpaRepository<Nave, Long> {
-    Page<Nave> findByNameContaining(String name, Pageable pageable);
+    Page<Nave> findByNameContainingIgnoreCase(String name, Pageable pageable);
 }
